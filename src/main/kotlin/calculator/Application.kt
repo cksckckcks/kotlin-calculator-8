@@ -1,5 +1,10 @@
 package calculator
 
 fun main() {
-    // TODO: 프로그램 구현
+    val inputView = InputView()
+
+    val input = inputView.readInput()
+
+    if (input.isEmpty())
+        return // Exception or 0
 }
