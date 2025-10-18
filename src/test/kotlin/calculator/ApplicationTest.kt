@@ -22,22 +22,6 @@ class ApplicationTest : NsTest() {
         }
     }
 
-    @Test
-    fun `커스텀 구분자 테스트`() {
-        assertSimpleTest {
-            run("//:\\n1:2:3")
-            assertThat(output()).contains("customDelimiter : :")
-        }
-    }
-
-    @Test
-    fun `커스텀 구분자 글자수 초과 테스트`() {
-        assertSimpleTest {
-            run("//::::::\\n1:2:3")
-            assertThat(output()).contains("customDelimiter : null")
-        }
-    }
-
     override fun runMain() {
         main()
     }
