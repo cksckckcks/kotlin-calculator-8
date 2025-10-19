@@ -12,10 +12,6 @@ class DelimiterParser {
             throw IllegalArgumentException("커스텀 구분자 형식에 오류가 있습니다.")
         }
 
-//        if (customDelimiterEndIdx == 2) {
-//            throw IllegalArgumentException("커스텀 구분자가 비어있습니다. 구분자를 입력해주세요. ")
-//        }
-
         val customDelimiter = input.substring(2, customDelimiterEndIdx)
 
         if (customDelimiter.length != 1) {
