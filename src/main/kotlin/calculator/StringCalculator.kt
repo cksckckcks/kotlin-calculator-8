@@ -1,7 +1,8 @@
 package calculator
 
 class StringCalculator(
-    private val parser: DelimiterParser = DelimiterParser()
+    private val parser: DelimiterParser = DelimiterParser(),
+    private val validator: InputValidator = InputValidator()
 ) {
 
     fun calculator(input: String) {
@@ -11,9 +12,11 @@ class StringCalculator(
         val customDelimiter = parser.extractCustomDelimiter(input)
         val numberPart = parser.extractNumberPart(input, customDelimiter)
 
-        val numberList = split(numberPart, customDelimiter).map { it.toInt() }
+        val numberList = split(numberPart, customDelimiter)
 
-        print(numberList)
+        val intNumberList = validator.validateAndConvert(numberList)
+
+        print(intNumberList)
     }
 
     private fun split(numberPart: String, customDelimiter: String?): List<String> {
