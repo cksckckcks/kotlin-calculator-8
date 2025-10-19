@@ -5,7 +5,6 @@ class StringCalculator(
     private val validator: InputValidator = InputValidator(),
     private val outputView: OutputView = OutputView()
 ) {
-
     fun calculator(input: String) {
         if (input.isEmpty()) {
             outputView.printResult(0)
