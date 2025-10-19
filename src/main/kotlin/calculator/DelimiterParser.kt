@@ -2,11 +2,27 @@ package calculator
 
 class DelimiterParser {
     fun extractCustomDelimiter(input: String): String? {
-        if (!input.matches(Regex("^//(.)\\\\n.*$"))) {
+        if (!input.startsWith("//")) {
             return null
         }
 
-        return input.substring(2, 3)
+        val customDelimiterEndIdx = input.indexOf("\\n")
+
+        if (customDelimiterEndIdx == -1) {
+            throw IllegalArgumentException("커스텀 구분자 형식에 오류가 있습니다.")
+        }
+
+//        if (customDelimiterEndIdx == 2) {
+//            throw IllegalArgumentException("커스텀 구분자가 비어있습니다. 구분자를 입력해주세요. ")
+//        }
+
+        val customDelimiter = input.substring(2, customDelimiterEndIdx)
+
+        if (customDelimiter.length != 1) {
+            throw IllegalArgumentException("구분자는 1글자여야 합니다.")
+        }
+
+        return customDelimiter
     }
 
     fun extractNumberPart(input: String, customDelimiter: String?): String {
