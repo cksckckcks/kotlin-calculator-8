@@ -58,13 +58,27 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `숫자에 공백이 들어간 경우`() {
+        assertSimpleTest {
+            assertThrows<IllegalArgumentException> { runException("1: 2:3") }
+        }
+    }
+
+    @Test
+    fun `숫자가 0으로 시작한 경우`() {
+        assertSimpleTest {
+            run("0001,1,2:3,3")
+            assertThat(output()).contains("결과 : 10")
+        }
+    }
+
+    @Test
     fun `기본 구분자 2가지 모두 사용한 경우`() {
         assertSimpleTest {
             run("1,1,2:3,3")
             assertThat(output()).contains("결과 : 10")
         }
     }
-
 
     override fun runMain() {
         main()
