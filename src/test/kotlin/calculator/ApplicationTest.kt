@@ -80,6 +80,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `매우 큰 수가 들어간 경우`() {
+        assertSimpleTest {
+            run("1,12398712937812983712987312983721938172")
+            assertThat(output()).contains("결과 : 12398712937812983712987312983721938173")
+        }
+    }
+
     override fun runMain() {
         main()
     }
