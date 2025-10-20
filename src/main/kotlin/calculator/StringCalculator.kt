@@ -1,5 +1,7 @@
 package calculator
 
+import java.math.BigInteger
+
 class StringCalculator(
     private val parser: DelimiterParser = DelimiterParser(),
     private val validator: InputValidator = InputValidator(),
@@ -7,7 +9,7 @@ class StringCalculator(
 ) {
     fun calculator(input: String) {
         if (input.isEmpty()) {
-            outputView.printResult(0)
+            outputView.printResult(BigInteger.ZERO)
 
             return
         }
@@ -17,9 +19,11 @@ class StringCalculator(
 
         val numberList = split(numberPart, customDelimiter)
 
-        val intNumberList = validator.validateAndConvert(numberList)
+        val bigIntNumberList = validator.validateAndConvert(numberList)
 
-        outputView.printResult(intNumberList.sum())
+        val result = bigIntNumberList.fold(BigInteger.ZERO) { acc, bigIntNum -> acc.add(bigIntNum) }
+
+        outputView.printResult(result)
     }
 
     private fun split(numberPart: String, customDelimiter: String?): List<String> {
